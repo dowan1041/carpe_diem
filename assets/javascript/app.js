@@ -22,28 +22,13 @@ $(document).ready(function(){
     }
     timer();
 
-    $("#searchBtn").on("click", function(event){
-        
-        event.preventDefault();
 
-        var addressOne = $("#inputAddress").val().trim();
-        var addressTwo = $("#inputAddress2").val().trim();
-        var inputCity = $("#inputCity").val().trim();
-        var inputState = $("#inputState").val().trim();
-        var inputZip = $("#inputZip").val().trim();
-        var category = $("#inputCategories").val().trim();
-        var radius = $("#inputRadius").val().trim();
-        var priceRange = $("#priceRange").val().trim();
-
-    
-    })
-
-    function searchEventsNearMe(address) {
+    function searchEventsNearMe(address, price, category, radius) {
       eventsArray = [];
       $("#search-view").empty();
       $("#detail-view").empty();
       // Querying the EventBrite api for the selected address
-      var queryURL = "https://www.eventbriteapi.com/v3/events/search/?sort_by=best&location.address=" + address + "&location.within=1mi&token=CM3FPDQCMD3DZSJA47PF&expand=venue";
+      var queryURL = "https://www.eventbriteapi.com/v3/events/search/?sort_by=best&location.address=" + address + "&price=" + price + "&categories=" + category + "&location.within=" + radius + "&token=CM3FPDQCMD3DZSJA47PF&expand=venue";
       $.ajax({
         url: queryURL,
         method: "GET"
@@ -86,7 +71,7 @@ $(document).ready(function(){
       $("#detail-view").append($("<div>").wrap('<a href="'+ eventsArray[index].eventURL + '"></a>').addClass("eventURL"));
       $("#detail-view").append($("<div>").html("<p> <strong>Address : </strong></p>" + fullAddress).addClass("eventAddress"));
       $("#detail-view").append($("<div>").html("<p> <strong>Date & Time : </strong></p>" + time).addClass("eventTime"));
-      $("#detail-view").append($("<div>").addClass("text-center").html("<button type='button' id='eventBtn' class='btn btn-success btn-lg'>More Detail</button>"));
+      $("#detail-view").append($("<div>").addClass("text-center").html("<button type='button' id='eventBtn' class='btn btn-success btn-lg'>Register</button>"));
       $("#eventBtn").on("click", function() {
         document.location = eventsArray[index].eventURL;
       });
@@ -116,14 +101,55 @@ $(document).ready(function(){
       event.preventDefault();
       // Storing the address
       var inputAddress = $("#inputAddress").val().trim();
-      var inputAddressTwo = $("#inputAddress2").val().trim();
-      var inputCity = $("#inputAddress2").val().trim();
-      var inputState = $("#inputAddress2").val().trim();
-      var combinedAddress = inputAddress+ "" + inputAddressTwo + "" + inputCity + "" + inputState + "" + inputZip;
+      var inputCity = $("#inputCity").val().trim();
+      var inputState = $("#inputState").val().trim();
+      var inputState = $("#inputZip").val().trim();
+      var combinedAddress = inputAddress+ "" + inputCity + "" + inputState + "" + inputZip;
+
+      //sort by price
+
+      if ($("#priceRange").val() === "1") {
+        inputPrice = "free";
+      } else if ($("#priceRange").val() === "2") {
+        inputPrice = "paid";
+      } else {
+        inputPrice = false;
+      }
+
+      // sort by categories
+
+      if ($("#inputCategories").val() === "1") {
+        inputCategory = "104";
+      } else if ($("#inputCategories").val() === "2") {
+        inputCategory = "113";
+      } else if ($("#inputCategories").val() === "3") {
+        inputCategory = "108";
+      } else if ($("#inputCategories").val() === "4") {
+        inputCategory = "103";
+      } else if ($("#inputCategories").val() === "5") {
+        inputCategory = "110";
+      } else if ($("#inputCategories").val() === "6") {
+        inputCategory = "119"; 
+      } else {
+        inputCategory = "104,113,108,103,110,119";
+      };
+
+      // sort by radii
+
+      //Radius input
+        if ($("#inputRadius").val() === "1") {
+          var inputRadius = "1mi";
+      } else if ($("#inputRadius").val() === "2") {
+          var inputRadius = "2mi";
+      } else if ($("#inputRadius").val() === "3") {
+          var inputRadius = "3mi";
+      } else {
+          var inputRadius = "1mi";
+      }
   
       console.log(combinedAddress);
       // Running the searchEventsNearMe function(passing in the address as an argument)
-      searchEventsNearMe(combinedAddress);
+      searchEventsNearMe(combinedAddress, inputPrice, inputCategory, inputRadius);
     });
 
 });
