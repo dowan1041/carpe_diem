@@ -22,6 +22,18 @@ $(document).ready(function(){
     }
     timer();
 
+    // function searchWeather(weather) {
+    //   var queryURLTwo = "api.openweathermap.org/data/2.5/weather?q=" + inputCity;
+    //   $.ajax({
+    //     url: queryURLTwo,
+    //     method: "GET"
+    //   }).then(function(result){
+    //     var cityWeather = {
+
+    //     }
+    //   })
+    // }
+
 
     function searchEventsNearMe(address, price, category, radius) {
       eventsArray = [];
@@ -71,10 +83,13 @@ $(document).ready(function(){
       $("#detail-view").append($("<div>").wrap('<a href="'+ eventsArray[index].eventURL + '"></a>').addClass("eventURL"));
       $("#detail-view").append($("<div>").html("<p> <strong>Address : </strong></p>" + fullAddress).addClass("eventAddress"));
       $("#detail-view").append($("<div>").html("<p> <strong>Date & Time : </strong></p>" + time).addClass("eventTime"));
-      $("#detail-view").append($("<div>").addClass("text-center").html("<button type='button' id='eventBtn' class='btn btn-success btn-lg'>Register</button>"));
+      $("#detail-view").append($("<div>").addClass("register-btn text-center").html("<button type='button' ' id='eventBtn' class='btn btn-success btn-lg'>Register</button>"));
       $("#eventBtn").on("click", function() {
-        document.location = eventsArray[index].eventURL;
+        window.open(eventsArray[index].eventURL, "_blank");
       });
+     
+     // map coding
+     
       var location= {lat: parseFloat(eventsArray[index].eventLat), lng: parseFloat(eventsArray[index].eventLon)};
       console.log(location);
       if(markers==null){
@@ -103,7 +118,7 @@ $(document).ready(function(){
       var inputAddress = $("#inputAddress").val().trim();
       var inputCity = $("#inputCity").val().trim();
       var inputState = $("#inputState").val().trim();
-      var inputState = $("#inputZip").val().trim();
+      var inputZip = $("#inputZip").val().trim();
       var combinedAddress = inputAddress+ "" + inputCity + "" + inputState + "" + inputZip;
 
       //sort by price
@@ -134,7 +149,6 @@ $(document).ready(function(){
         inputCategory = "104,113,108,103,110,119";
       };
 
-      // sort by radii
 
       //Radius input
         if ($("#inputRadius").val() === "1") {

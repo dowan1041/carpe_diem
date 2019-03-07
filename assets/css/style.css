@@ -58,6 +58,10 @@ body {
     font-family: 'Sniglet', cursive;
 }
 
+.register-btn {
+    margin: 10px;
+}
+
 /* search-veiw */
 
 #search-view {
