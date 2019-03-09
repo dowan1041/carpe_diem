@@ -15,9 +15,41 @@ body {
 }
 
 /* jumbotron */
+#howToUseBox { 
+    width: 400px;
+    padding: 8px;
+    background-color: black;
+    opacity: 0.7;
+    color: white;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+#rateMyAppBox {
+    width: 400px;
+    padding: 8px;
+    background-color: black;
+    opacity: 0.7;
+    color: white;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+#developer {
+    color: white;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+#ratingBtn {
+    margin: 5px;
+}
 
-.jumbotron {
-    margin: 15px 0;
+#developersList {
+    width: 200px;
+    padding: 8px;
+    background-color: black;
+    opacity: 0.7;
+    color: white;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+#banner1 {
+    width: 100%;
+    height: 300px;
 }
 
 /* map-view */
@@ -37,7 +69,7 @@ body {
 
 #search-engine {
     width: 100%;
-    height: 910px;
+    height: 450px;
     border: 5px solid green;
     padding: 20px 15px;
     background-color: white;
@@ -56,6 +88,10 @@ body {
 }
 .form-group, .input-group-text, .custom-select {
     font-family: 'Sniglet', cursive;
+}
+
+.register-btn {
+    margin: 10px;
 }
 
 /* search-veiw */
@@ -132,4 +168,10 @@ body {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+#pac-input {
+    overflow: visible;
+    width: 100%;
+    text-align: center;
 }
