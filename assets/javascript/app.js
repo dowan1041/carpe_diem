@@ -39,7 +39,11 @@ $(document).ready(function(){
 
         // Printing the entire object to console
         console.log(response);
-          for (var i = 0; i <= 5; i++) {
+        console.log(response.events.length);
+        var array_length;
+        if (response.events.length>4){array_length=5}
+          else{array_length= response.events.length}
+          for (var i = 0; i < array_length; ++i) {
             var eventNearMe = {
               eventName: response.events[i].name.text,
               eventURL: response.events[i].url,
@@ -55,9 +59,9 @@ $(document).ready(function(){
               eventTime: response.events[i].start.local,
               eventCost: response.events[i].is_free
             }
-          eventsArray.push(eventNearMe)
-          $("#search-view").append($("<p>").html(i+1 + ".   " + eventNearMe.eventName).attr("index",i).attr("class","events"));
-        }
+            eventsArray.push(eventNearMe)
+            $("#search-view").append($("<p>").html(i+1 + ".   " + eventNearMe.eventName).attr("index",i).attr("class","events"));
+          }
       });
     }
 
@@ -156,7 +160,8 @@ $(document).ready(function(){
       }
 
       // Running the searchEventsNearMe function(passing in the address as an argument)
-      searchEventsNearMe(inputAddress, inputPrice, inputCategory, inputRadius);
+      $("#search-view").empty();
+      $("#detail-view").empty();
       google.maps.event.trigger(input, 'focus', {});
       google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
       google.maps.event.trigger(this, 'focus', {});
@@ -166,7 +171,7 @@ $(document).ready(function(){
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
     // NEW SEARCH BOX MAP FUNCTION BY MATTHEW A
 
 
@@ -308,4 +313,42 @@ $(document).ready(function(){
     }
 
     searchBox.addListener('places_changed', add_homemarker);
+  ///////////////////////////////////////////////////////////////////////////////////////
+  var config = {
+    apiKey: "AIzaSyBCzVoitJ-vXPfU1tLE6v4D1kaaxfJgAQY",
+    authDomain: "carpediemratings.firebaseapp.com",
+    databaseURL: "https://carpediemratings.firebaseio.com",
+    projectId: "carpediemratings",
+    storageBucket: "carpediemratings.appspot.com",
+    messagingSenderId: "152656758935"
+  };
+
+  firebase.initializeApp(config);
+  var dataRef = firebase.database();
+  // Initial Values
+  var rating = "";
+  // Capture Button Click
+  $("#add-user").on("click", function(event) {
+    event.preventDefault();
+    // rating = $('.btn-group > .btn.active').val().trim();
+    rating = $('input[name=rating]:checked').val().trim();
+    // rating = $("#rating-input").val().trim();
+    dataRef.ref().push({
+      rating: rating,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+  });
+  // Firebase watcher + initial loader HINT: .on("value")
+  dataRef.ref().on("child_added", function(snapshot) {
+    // Log everything that's coming out of snapshot
+    console.log(snapshot.val());
+    console.log(snapshot.val().rating);
+    // Change the HTML to reflect
+    $("#rating-display").text(snapshot.val().rating);
+
+    // Handle the errors
+  }, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
+
 });
