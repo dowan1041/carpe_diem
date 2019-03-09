@@ -65,6 +65,8 @@ $(document).ready(function(){
       console.log("hi");
       var index= $(this).attr("index");
       var fullAddress = eventsArray[index].eventAddress1 + " " +eventsArray[index].eventAddress2 + " " + eventsArray[index].eventAddressCity + ", "+ eventsArray[index].eventAddressState + ", " +eventsArray[index].eventAddressZipcode;
+      console.log(fullAddress);
+      fullAddress= fullAddress.replace("null","");
       console.log(index);
       var time = eventsArray[index].eventTime;
       time = moment(time).format('MMMM Do YYYY, h:mm a')
@@ -115,9 +117,9 @@ $(document).ready(function(){
 
       //sort by price
       var inputPrice;
-      if ($("#priceRange").val() === "1") {
+      if ($("#priceRange").val() == "1") {
         inputPrice = "free";
-      } else if ($("#priceRange").val() === "2") {
+      } else if ($("#priceRange").val() == "2") {
         inputPrice = "paid";
       } else {
         inputPrice = false;
@@ -125,32 +127,32 @@ $(document).ready(function(){
 
       // sort by categories
       var inputCategory;
-      if ($("#inputCategories").val() === "1") {
+      if ($("#inputCategories").val() == "1") {
         inputCategory = "104";
-      } else if ($("#inputCategories").val() === "2") {
+      } else if ($("#inputCategories").val() == "2") {
         inputCategory = "113";
-      } else if ($("#inputCategories").val() === "3") {
+      } else if ($("#inputCategories").val() == "3") {
         inputCategory = "108";
-      } else if ($("#inputCategories").val() === "4") {
+      } else if ($("#inputCategories").val() == "4") {
         inputCategory = "103";
-      } else if ($("#inputCategories").val() === "5") {
+      } else if ($("#inputCategories").val() == "5") {
         inputCategory = "110";
-      } else if ($("#inputCategories").val() === "6") {
+      } else if ($("#inputCategories").val() == "6") {
         inputCategory = "119"; 
       } else {
-        inputCategory = "104,113,108,103,110,119";
+        inputCategory = "";
       };
 
       var inputRadius;
       //Radius input
-        if ($("#inputRadius").val() === "1") {
-          var inputRadius = "1mi";
-      } else if ($("#inputRadius").val() === "2") {
-          var inputRadius = "2mi";
-      } else if ($("#inputRadius").val() === "3") {
-          var inputRadius = "3mi";
+        if ($("#inputRadius").val() == "1") {
+          inputRadius = "1mi";
+      } else if ($("#inputRadius").val() == "2") {
+          inputRadius = "2mi";
+      } else if ($("#inputRadius").val() == "3") {
+          inputRadius = "3mi";
       } else {
-          var inputRadius = "1mi";
+          inputRadius = "1mi";
       }
 
       // Running the searchEventsNearMe function(passing in the address as an argument)
@@ -194,9 +196,9 @@ $(document).ready(function(){
 
       //sort by price
       var inputPrice;
-      if ($("#priceRange").val() === "1") {
+      if ($("#priceRange").val() == "1") {
         inputPrice = "free";
-      } else if ($("#priceRange").val() === "2") {
+      } else if ($("#priceRange").val() == "2") {
         inputPrice = "paid";
       } else {
         inputPrice = false;
@@ -204,29 +206,29 @@ $(document).ready(function(){
 
       // sort by categories
       var inputCategory;
-      if ($("#inputCategories").val() === "1") {
+      if ($("#inputCategories").val() == "1") {
         inputCategory = "104";
-      } else if ($("#inputCategories").val() === "2") {
+      } else if ($("#inputCategories").val() == "2") {
         inputCategory = "113";
-      } else if ($("#inputCategories").val() === "3") {
+      } else if ($("#inputCategories").val() == "3") {
         inputCategory = "108";
-      } else if ($("#inputCategories").val() === "4") {
+      } else if ($("#inputCategories").val() == "4") {
         inputCategory = "103";
-      } else if ($("#inputCategories").val() === "5") {
+      } else if ($("#inputCategories").val() == "5") {
         inputCategory = "110";
-      } else if ($("#inputCategories").val() === "6") {
+      } else if ($("#inputCategories").val() == "6") {
         inputCategory = "119"; 
       } else {
-        inputCategory = "104,113,108,103,110,119";
+        inputCategory = "";
       };
 
       var inputRadius;
       //Radius input
-        if ($("#inputRadius").val() === "1") {
+        if ($("#inputRadius").val() == "1") {
           var inputRadius = "1mi";
-      } else if ($("#inputRadius").val() === "2") {
+      } else if ($("#inputRadius").val() == "2") {
           var inputRadius = "2mi";
-      } else if ($("#inputRadius").val() === "3") {
+      } else if ($("#inputRadius").val() == "3") {
           var inputRadius = "3mi";
       } else {
           var inputRadius = "1mi";
