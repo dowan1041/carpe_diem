@@ -21,20 +21,7 @@ $(document).ready(function(){
         });
     }
     timer();
-
-    // function searchWeather(weather) {
-    //   var queryURLTwo = "api.openweathermap.org/data/2.5/weather?q=" + inputCity;
-    //   $.ajax({
-    //     url: queryURLTwo,
-    //     method: "GET"
-    //   }).then(function(result){
-    //     var cityWeather = {
-
-    //     }
-    //   })
-    // }
-
-
+    
     function searchEventsNearMe(address, price, category, radius) {
       eventsArray = [];
       $("#search-view").empty();
@@ -165,5 +152,43 @@ $(document).ready(function(){
       // Running the searchEventsNearMe function(passing in the address as an argument)
       searchEventsNearMe(combinedAddress, inputPrice, inputCategory, inputRadius);
     });
+
+
+  var config = {
+    apiKey: "AIzaSyBCzVoitJ-vXPfU1tLE6v4D1kaaxfJgAQY",
+    authDomain: "carpediemratings.firebaseapp.com",
+    databaseURL: "https://carpediemratings.firebaseio.com",
+    projectId: "carpediemratings",
+    storageBucket: "carpediemratings.appspot.com",
+    messagingSenderId: "152656758935"
+  };
+
+  firebase.initializeApp(config);
+  var dataRef = firebase.database();
+  // Initial Values
+  var rating = "";
+  // Capture Button Click
+  $("#add-user").on("click", function(event) {
+    event.preventDefault();
+    // rating = $('.btn-group > .btn.active').val().trim();
+    rating = $('input[name=rating]:checked').val().trim();
+    // rating = $("#rating-input").val().trim();
+    dataRef.ref().push({
+      rating: rating,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+  });
+  // Firebase watcher + initial loader HINT: .on("value")
+  dataRef.ref().on("child_added", function(snapshot) {
+    // Log everything that's coming out of snapshot
+    console.log(snapshot.val());
+    console.log(snapshot.val().rating);
+    // Change the HTML to reflect
+    $("#rating-display").text(snapshot.val().rating);
+
+    // Handle the errors
+  }, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
 
 });

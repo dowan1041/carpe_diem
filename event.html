@@ -25,8 +25,25 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">How To Use</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            How To Use
+                            </a>
+                            <div id="howToUseBox" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a>1. Please put your current location (address).</a>
+                                <br>
+                                <a>2. You can sort event search by categories, radius and price.</a>
+                                <br>
+                                <a>3. Press the search button.</a>
+                                <br>
+                                <a>4. Below the map, you can choose a event to see detals.</a>
+                                <br>
+                                <a>5. On the map, you can see the location it is held.</a>
+                                <br>
+                                <a>6. If you want to attend the event, press the register button.</a>
+                                <br>
+                                <a>7. Enjoy. <i class="far fa-smile"></i></a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="event.html">EVENTS</a>
@@ -38,22 +55,48 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Developers
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Christopher I.</a>
-                                <a class="dropdown-item" href="#">Dowan K.</a>
-                                <a class="dropdown-item" href="#">Leigh B.</a>
-                                <a class="dropdown-item" href="#">Matthew A.</a>
-                                <a class="dropdown-item" href="#">Matthews C.</a>
+                            <div id="developersList" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a id="developer" class="dropdown-item" href="#">Christopher I.</a>
+                                <a id="developer" class="dropdown-item" href="#">Dowan K.</a>
+                                <a id="developer" class="dropdown-item" href="#">Leigh B.</a>
+                                <a id="developer" class="dropdown-item" href="#">Matthew A.</a>
+                                <a id="developer" class="dropdown-item" href="#">Matthews C.</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Rate Our APP</a>
+                        <li class="nav-item dropdown navbar-right">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-star-half-alt"></i> Rate Our APP
+                            </a>
+                            <div id="rateMyAppBox" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#"></a>
+                                <div class="card-body">
+                                    <form role="form">
+                                        <div class="form-group">
+                                                <label for="rating-input">Rating:</label>
+                                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                                    <div class="btn-group mr-2" id="rating-input" role="group" aria-label="First group">
+                                                        <input id="ratingBtn" type="radio" name="rating" class="btn btn-secondary rating" value="1"> 1 </button>
+                                                        <input id="ratingBtn" type="radio" name="rating" class="btn btn-secondary rating" value="2"> 2 </button>
+                                                        <input id="ratingBtn" type="radio" name="rating" class="btn btn-secondary rating" value="3"> 3 </button>
+                                                        <input id="ratingBtn" type="radio" name="rating" class="btn btn-secondary rating" value="4"> 4 </button>
+                                                        <input id="ratingBtn" type="radio" name="rating" class="btn btn-secondary rating" value="5"> 5 </button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <button class="btn btn-primary" id="add-user" type="submit">Submit</button>
+                                        <div>The last user rating for this app: </div>
+                                        <div id="rating-display"></div>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
         <div class="container">
+            <div id="howTouUse">
+            </div>
             <div id="slideshow" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -171,6 +214,7 @@
             </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCki-fwEus8QmpImbf5IS0HrltxZegbnpI&region=eng&libraries=places&callback=initAutocomplete" async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
         <script src="assets/javascript/app.js" type="text/javascript"></script>
     </body>
 </html>
