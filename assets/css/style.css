@@ -47,7 +47,7 @@ body {
     color: white;
     font-family: 'Ubuntu Condensed', sans-serif;
 }
-.#banner1 {
+#banner1 {
     width: 100%;
     height: 300px;
 }
@@ -168,4 +168,10 @@ body {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+#pac-input {
+    overflow: visible;
+    width: 100%;
+    text-align: center;
 }
