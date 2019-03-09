@@ -119,6 +119,7 @@ $(document).ready(function(){
       // Storing the address
 
       // Running the searchEventsNearMe function(passing in the address as an argument)
+      $(".events").empty();
       $("#search-view").empty();
       $("#detail-view").empty();
             // Storing the address
