@@ -1,8 +1,8 @@
 # carpe_diem
 
 ### developed by
-dowan
-leigh
-matthews
-matthew
-chris
+* dowan
+* leigh
+* matthews
+* matthew
+* chris
